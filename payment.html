@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment | BookMyShowTime</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://dashboard.thefinanser.com/wp-content/uploads/2023/03/Paymengt.jpg');
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 2em;
+    }
+
+    h2 {
+      margin-bottom: 1em;
+      text-align: center;
+      color:#000000;
+    }
+
+    .payment-container {
+      background: #484646;
+      padding: 3em;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .amount {
+      font-size: 1.8em;
+      color: #00ffae;
+      margin-bottom: 1.5em;
+    }
+
+    .confirm-btn {
+      background-color: #e50914;
+      color: white;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.5em;
+      transition: all 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+      background-color: #ff0a2c;
+      transform: scale(1.05);
+    }
+
+    .payment-status {
+      margin-top: 2em;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #6feaf6;
+    }
+
+    .back-home-link {
+      margin-top: 1.5em;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      background-color: #000;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    #qrcode {
+      margin-top: 2em;
+    }
+
+    /* Styling the QR Code Image */
+    #qr-image {
+      width: 200px;
+      height: 200px;
+      margin-top: 2em;
+    }
+  </style>
+  <!-- QR Code library -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+</head>
+<body>
+
+  <h2>Your Payment</h2>
+
+  <div class="payment-container">
+    <div class="amount">
+      Total Amount: ₹<span id="total-amount"></span>
+    </div>
+  
+    <!-- QR Code Image Display -->
+    <img id="qr-image" src="https://qrexplore.com/icon/apple-icon.png" alt="QR Code for Payment"/>
+  
+    <!-- Payment Status -->
+    <div id="payment-status" class="payment-status"></div>
+    
+    <button class="confirm-btn" id="confirm-btn">Confirm Payment</button>
+  
+    <!-- Back to Home link -->
+    <a href="login.html" class="back-home-link">← Back to Home</a>
+  </div>
+  <form action="generate_ticket.php" method="POST">
+    <input type="hidden" name="movie" id="movie">
+    <input type="hidden" name="theater" id="theater">
+    <input type="hidden" name="seats" id="seats">
+    <input type="hidden" name="amount" value="300"> <!-- static or dynamic -->
+    <button type="submit">Pay Now</button>
+  </form>
+  
+  <script>
+    document.getElementById('movie').value = localStorage.getItem("selectedMovie");
+    document.getElementById('theater').value = localStorage.getItem("selectedTheater");
+    document.getElementById('seats').value = localStorage.getItem("selectedSeats");
+  </script>
+  
+</body>
+</html>

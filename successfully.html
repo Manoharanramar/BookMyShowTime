@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Success</title>
+  <style>
+    body {
+      background-image:url('https://img.freepik.com/premium-vector/grunge-black-background-crack-texture-black-paper-background-broken-texture_720029-1355.jpg');
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .success-message {
+      background: linear-gradient(145deg, #1f1f1f, #292929);
+      padding: 2em 3em;
+      border-radius: 12px;
+      color: #ff2020;
+      font-size: 2em;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.8) translateY(40px);
+      animation: popIn 1.2s ease-out forwards, pulse 2s ease-in-out 1.5s infinite;
+      box-shadow: 0 0 20px rgba(214, 3, 3, 0.4);
+      text-shadow: 0 0 10px rgba(255, 12, 12, 0.6);
+    }
+
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(40px);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.1) translateY(0);
+      }
+      100% {
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 20px rgba(222, 60, 60, 0.4);
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(203, 12, 12, 0.8);
+        text-shadow: 0 0 15px rgba(236, 38, 24, 0.9);
+      }
+      100% {
+        box-shadow: 0 0 20px rgba(208, 14, 0, 0.4);
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="success-message">
+    🎉 Successfully Ordered!
+  </div>
+
+  <script>
+    // Redirect to home after 4 seconds
+    setTimeout(() => {
+      window.location.href = 'login.html'; // Replace with your home page path
+    }, 6000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile | BookMyShowTime</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://static.vecteezy.com/system/resources/previews/001/840/612/non_2x/picture-profile-icon-male-icon-human-or-people-sign-and-symbol-free-vector.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    header {
+      background-image: url('https://t4.ftcdn.net/jpg/03/37/96/33/360_F_337963325_EJuPjWslX3vAFxJ59L3y1cm6IsSfo07s.jpg');
+      padding: 1em 2em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 0.5em 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .profile-container {
+      max-width: 800px;
+      margin: 2em auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 2em;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1em;
+      color:#ec9095;
+    }
+
+    .profile-details {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1em;
+      align-items: center;
+    }
+
+    .profile-pic {
+      width: 100%;
+      max-width: 180px;
+      border-radius: 10px;
+      border: 3px solid #e50914;
+    }
+
+    .details input {
+      width: 100%;
+      padding: 0.75em;
+      margin-bottom: 1em;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .details label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+
+    .save-btn {
+      background-color: #e50914;
+      color: #fff;
+      padding: 0.75em 2em;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .save-btn:hover {
+      background-color: #ff1f1f;
+    }
+
+    .upload-btn {
+      background-color: #008CBA;
+      color: #fff;
+      padding: 0.75em 2em;
+      border: none;
+      font-weight: bold;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      background-color: #0077A3;
+    }
+
+    .info {
+      margin-top: 2em;
+      text-align: center;
+      color: #ccc;
+    }
+
+    .success-message {
+      background-color: #28a745;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      border-radius: 5px;
+      margin-top: 1em;
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    footer {
+      background-color: #000;
+      padding: 1em;
+      text-align: center;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬 MovieMania Booking</h1>
+  </header>
+  <nav>
+    <a href="login.html">Home</a>
+    <a href="upcoming.html">Upcoming movie</a>
+    <a href="profile.html">Profile</a>
+    <a href="contact.html">Contact</a>
+    <a href="snacks.html">Snacks</a> 
+  </nav>
+
+  <!-- Form to handle profile data -->
+  <form id="profileForm" action="saveProfile.php" method="POST" enctype="multipart/form-data">
+    <div class="profile-container">
+      <h2>👤 My Profile</h2>
+      <div class="profile-details">
+        <div>
+          <img id="profilePic" src="https://t3.ftcdn.net/jpg/07/24/59/76/360_F_724597608_pmo5BsVumFcFyHJKlASG2Y2KpkkfiYUU.jpg" alt="Profile Picture" class="profile-pic" />
+          <input type="file" id="photoUpload" class="upload-btn" name="profile_picture" onchange="previewImage(event)" />
+        </div>
+        <div class="details">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" value="" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="" />
+
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" name="phone" value="" />
+
+          <button type="submit" class="save-btn">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <footer>
+    <p>&copy; 2025 MovieMania Booking System | Designed by You</p>
+  </footer>
+
+  <script>
+    // Function to preview uploaded image
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function() {
+        const output = document.getElementById('profilePic');
+        output.src = reader.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>  
+</body>
+</html>

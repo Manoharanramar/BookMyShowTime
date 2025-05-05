@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | BookMyShowTime</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://thumbs.dreamstime.com/b/technical-support-center-customer-service-internet-business-technology-concept-technical-support-center-customer-service-internet-119668737.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    header {
+      background-image:url('https://t4.ftcdn.net/jpg/03/37/96/33/360_F_337963325_EJuPjWslX3vAFxJ59L3y1cm6IsSfo07s.jpg');
+      background-size: cover;
+      padding: 1em 2em;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #000;
+      padding: 0.5em 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 2em auto;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 2em;
+      border-radius: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    input, textarea {
+      padding: 0.75em;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      padding: 0.75em;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1f1f;
+    }
+
+    .info {
+      margin-top: 2em;
+      text-align: center;
+      color: #ccc;
+    }
+
+    footer {
+      background-color: #000;
+      padding: 1em;
+      text-align: center;
+      margin-top: 3em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎬  BookMyShowTime</h1>
+  </header>
+
+  <nav>
+    <a href="login.html">Home</a>
+    <a href="upcoming.html">Upcoming movie</a>
+    <a href="profile.html">Profile</a>
+    <a href="contact.html">Contact</a>
+    <a href="snacks.html">Snacks</a> 
+  </nav>
+
+  <div class="contact-container">
+    <h2>📩 Contact Us</h2>
+    <form action="contact.php" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="info">
+      <p>Email: support@BookMyShowTime.com</p>
+      <p>Phone: +1 234 567 8901</p>
+      <p>Address: 123 Cineplex Blvd, Film City, FL 12345</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025  BookMyShowTime Booking System | Designed by dsmano@</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Theater | MovieMania</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://cdn.pixabay.com/photo/2013/02/26/01/10/auditorium-86197_1280.jpg');
+      background-color: #111;
+      color: #fff;
+      padding: 2em;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2em;
+    }
+
+    .movie-title {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    .theater {
+      margin-bottom: 1.5em;
+      background-image:url('https://assets-in.bmscdn.com/moviesmaster/assets/attr/001_1689321410600.jpg');
+      background-color: #333;
+      padding: 1.2em;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .theater:hover {
+      background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_ZKeVQpl9Gn8XPAs7sFACGVUKXWDT385ZYw&s');
+      background-color: #e50914;
+    }
+
+    .theater h3 {
+      margin: 0;
+    }
+
+    .theater p {
+      font-size: 1.2em;
+    }
+
+    button {
+      background-color: #e50914;
+      color: white;
+      padding: 0.8em 1.5em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+    }
+
+    button:hover {
+      background-color: #82737d;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Select Theater for <span id="movie-title"></span></h1>
+  </header>
+
+  <div id="theater-list">
+    <div class="theater" onclick="selectTheater('Theater 1')">
+      <h3>Theater 1</h3>
+      <p>Location: Downtown</p>
+      <p>Seats Available: 150</p>
+      <button>Book Now</button>
+    </div>
+
+    <div class="theater" onclick="selectTheater('Theater 2')">
+      <h3>Theater 2</h3>
+      <p>Location: Uptown</p>
+      <p>Seats Available: 120</p>
+      <button>Book Now</button>
+    </div>
+
+    <div class="theater" onclick="selectTheater('Theater 3')">
+      <h3>Theater 3</h3>
+      <p>Location: Riverside</p>
+      <p>Seats Available: 100</p>
+      <button>Book Now</button>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const movie = urlParams.get('movie');
+    document.getElementById("movie-title").textContent = movie || "Unknown";
+  
+    // Fetch theater list from PHP backend
+    fetch('get_theaters.php')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('theater-list');
+        list.innerHTML = ''; // Clear existing
+  
+        data.forEach(theater => {
+          const div = document.createElement('div');
+          div.className = 'theater';
+          div.onclick = () => selectTheater(theater.name);
+          div.innerHTML = `
+            <h3>${theater.name}</h3>
+            <p>Location: ${theater.location}</p>
+            <p>Seats Available: ${theater.seats_available}</p>
+            <button>Book Now</button>
+          `;
+          list.appendChild(div);
+        });
+      });
+  
+    function selectTheater(theaterName) {
+      alert(`You have selected ${theaterName} for ${movie}`);
+      window.location.href = `seat.html?movie=${encodeURIComponent(movie)}&theater=${encodeURIComponent(theaterName)}`;
+    }
+  </script>
+  
+</body>
+</html>

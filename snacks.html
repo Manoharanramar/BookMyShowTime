@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Snack Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.freepik.com/free-photo/top-view-orange-cips-with-sweet-nuts-chocolate-flakes-grey-surface-meal-snack-breakfast-nut_140725-118266.jpg?semt=ais_hybrid&w=740');
+      background-size: cover; 
+      background-position: center;
+      height: 100vh;
+      color: #fff;
+      padding: 2em;
+    }
+    h1 {
+      text-align: center;
+
+      color: #ffffff;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      background-color: #000000;
+      background-size: cover; 
+      background-position: center;
+      padding: 2em;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin-top: 1em;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.3em;
+    }
+    button {
+      margin-top: 1.5em;
+      padding: 0.7em 2em;
+      background-color: #ff6c73;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .home-button {
+      display: none;  /* Initially hide the home button */
+      margin-top: 2em;
+      padding: 0.7em 2em;
+      background-image: url('https://tiimg.tistatic.com/fp/1/007/668/modi-snacks-magic-masala-flavor-crunchy-potato-chips-for-kids-with-6-months-shelf-life-268.jpg');
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Snack Booking</h1>
+  <form id="snackForm">
+    <label for="popcorn">🍿 Popcorn (₹120 each)</label>
+    <input type="number" id="popcorn" min="0" value="0" />
+
+    <label for="drink">🥤 Cold Drink (₹80 each)</label>
+    <input type="number" id="drink" min="0" value="0" />
+
+    <label for="nachos">🧀 Nachos (₹100 each)</label>
+    <input type="number" id="nachos" min="0" value="0" />
+
+    <label for="combo">🎉 Combo Pack (₹250)</label>
+    <select id="combo">
+      <option value="0">None</option>
+      <option value="1">1 Combo</option>
+      <option value="2">2 Combos</option>
+    </select>
+    <div>
+    <button onclick="window.location.href='successfully.html';">Order now!</button>
+      <button onclick="window.location.href='index.html';">Go to Home</button>
+    </div>
+  </form>
+
+  <script>
+    function submitSnacks(event) {
+      event.preventDefault(); // Prevent the form from refreshing the page
+  
+      const data = {
+        popcorn: parseInt(document.getElementById('popcorn').value) || 0,
+        drink: parseInt(document.getElementById('drink').value) || 0,
+        nachos: parseInt(document.getElementById('nachos').value) || 0,
+        combo: parseInt(document.getElementById('combo').value) || 0
+      };
+  
+      // ✅ Updated fetch URL for PHP backend
+      fetch('http://localhost/movie_db/book-snacks.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(response => {
+        alert(`Snacks booked! Total: ₹${response.booking.total}`);
+        document.getElementById('homeButtonContainer').style.display = 'block';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while placing the order. Please try again.');
+      });
+    }
+  
+    document.getElementById('snackForm').addEventListener('submit', submitSnacks);
+  </script>
+  
+</body>
+</html>
